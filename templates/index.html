@@ -1,0 +1,38 @@
+<!-- cyc @ 2022-10-04 -->
+
+<html>
+    <head>
+        <title>Query co-authors via DBLP</title>
+    </head>
+    <body>
+        <form action="{{ url_for('get_dblp_coauthors_str') }}" method="post">
+            <h2>Query co-authors via DBLP</h2>
+            <h4><a href="https://github.com/changyanchuan/query-dblp-coauthors">[Github page]</a></h4>
+            
+            <p> ------------------------------------------------------------------- </p>
+            <pre> Q: How to use this tool? </pre>
+            <pre> A: We need to obtain the pid of the author. </pre>
+            <pre>     (1) Visit dblp.org and search the author who you would like to explore, such as Kaiming He. </pre>
+            <pre>     (2) Visit Kaiming's author page on DBLP. The url of the his page is "https://dblp.org/pid/34/7659.html". </pre>
+            <pre>     (3) The substring between pid and the html extension, i.e., '34/7659' is his pid on DBLP. </pre>
+            <pre>     (3+) Pids can be in the following forms: 34/7659,  t/YufeiTao,  68/4942-1. </pre>
+            <pre>  </pre>
+            <pre> Q: Existing problems? </pre>
+            <pre> A: Listed as follows. </pre>
+            <pre>     (1) A coauthor may have more than one pid. I didn't add any processes to solve these issues. Thus, using min_papers=1 is safer. </pre>
+
+            <p> ------------------------------------------------------------------- </p>
+        
+            <p>pid:&nbsp;<input name="pid" size="12" type="text" value="{{ pid }}" /> (Author's pid, such as 34/7659) </p>
+        
+            <p>starting year:&nbsp;<input name="start_year" size="12" type="text" value="{{ start_year }}" /> 
+                        (Papers published between ${starting year} and the current year (both included) will be retrieved.)</p>
+        
+            <p>minimal number of co-papers:&nbsp;<input name="min_papers" size="12" type="text" value="{{ min_papers }}" />
+                        (The minimal number of common papers.) </p>
+        
+            <input id="query_coauthors" type="submit" value="Query co-authors" />
+            <p> ------------------------------------------------------------------- </p>
+        </form>
+    </body>
+</html>
